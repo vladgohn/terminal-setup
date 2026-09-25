@@ -1,0 +1,77 @@
+{
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "palette": {
+    "bg": "#0B0C0E",
+    "host": "#49B3FF",
+    "mint": "#64FFE5",
+    "orange": "#FF8D13",
+    "path": "#D6FF88",
+    "user": "#FFA0E9"
+  },
+  "blocks": [
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "segments": [
+        {
+          "type": "os",
+          "style": "plain",
+          "template": "{{ .Icon }} ",
+          "foreground": "#CCCCCC",
+          "foreground_templates": [
+            "{{ if contains (lower .OS) \"windows\" }}#49B3FF{{ end }}",
+            "{{ if contains (lower .OS) \"linux\" }}#FF8D13{{ end }}"
+          ]
+        },
+        {
+          "type": "text",
+          "style": "plain",
+          "template": "\u00A0"
+        },
+        {
+          "type": "python",
+          "style": "plain",
+          "foreground": "p:bg",
+          "background": "p:mint",
+          "properties": {
+            "display_mode": "environment" // show only when venv/conda is active
+          },
+          "template": "{{ if or .Venv .Pyenv .Conda }}\udb81\udd0c {{ if .Venv }}{{ .Venv }}{{ else if .Conda }}{{ .Conda }}{{ else }}{{ .Pyenv }}{{ end }}{{ end }}"
+        },
+        {
+          "type": "session",
+          "style": "plain",
+          "template": "{{ .UserName }}",
+          "foreground": "p:user"
+        },
+        {
+          "type": "text",
+          "style": "plain",
+          "template": " {{ if .Root }}\udb81\ude8c{{ else }}\udb80\udea0{{ end }} ",
+          "foreground_templates": [
+            "{{ if .Root }}#FF303B{{ else }}#FFD93D{{ end }}"
+          ]
+        },
+        {
+          "type": "session",
+          "style": "plain",
+          "template": "{{ .HostName }}:",
+          "foreground": "p:host"
+        },
+        {
+          "type": "path",
+          "style": "plain",
+          "template": " {{ .Path }} ",
+          "foreground": "p:path",
+          "properties": {
+            "style": "full",
+            "home_icon": "~",
+            "folder_separator_icon": "/"
+          }
+        }
+      ]
+    }
+  ],
+  "version": 3,
+  "final_space": false
+}
