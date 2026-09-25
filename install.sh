@@ -79,7 +79,6 @@ if command -v mate-terminal >/dev/null && command -v gsettings >/dev/null; then
     gsettings set $p background-color "$BG"
     gsettings set $p foreground-color "$FG"
     gsettings set $p palette "$palette_colon"
-    gsettings set $p default-show-menubar false
 fi
 
 if command -v gnome-terminal >/dev/null && command -v gsettings >/dev/null; then
